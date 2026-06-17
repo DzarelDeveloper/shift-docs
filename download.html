@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download Shift - Professional Developer Workspace Installer</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              background: '#0c0f16',
+              surface: '#111622',
+              card: '#161d2d',
+              border: '#212c3f',
+            }
+          }
+        }
+      }
+    </script>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="download.css" />
+  </head>
+  <body class="bg-background text-slate-100 font-sans selection:bg-sky-500/30 selection:text-sky-300">
+
+    <!-- Ambient background glows -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden opacity-30">
+      <div class="absolute top-[15%] left-[10%] w-[500px] h-[500px] rounded-full bg-sky-500/10 blur-[130px]"></div>
+      <div class="absolute bottom-[10%] right-[10%] w-[600px] h-[600px] rounded-full bg-violet-600/10 blur-[150px]"></div>
+    </div>
+
+    <!-- Active Spotlight tracking -->
+    <div class="grid-bg fixed inset-0 pointer-events-none z-0 radial-glow opacity-25"></div>
+
+    <!-- Floating Sticky Global Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 md:top-4 md:left-1/2 md:-translate-x-1/2 w-full md:w-[calc(100%-2rem)] md:max-w-5xl z-50 transition-all duration-300">
+      <div id="navbar-inner" class="mx-auto px-6 py-3 flex items-center justify-between transition-all duration-300 md:rounded-2xl border border-transparent bg-transparent">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <img src="https://raw.githubusercontent.com/DzarelDeveloper/BloggerImg/refs/heads/main/logo-s.png" alt="Shift Logo" class="w-9 h-9 rounded-xl shadow-lg group-hover:scale-105 transition-transform duration-300">
+          <span class="text-xl font-bold tracking-tight text-white group-hover:text-sky-400 transition-colors">Shift</span>
+        </a>
+
+        <!-- Desktop Menu Links -->
+        <nav class="hidden md:flex items-center gap-5">
+          <a href="docs/index.html" class="relative group py-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors duration-300">
+            Docs
+            <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-sky-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </a>
+          <a href="download.html" class="relative group py-1.5 text-sm font-semibold text-sky-400 transition-colors duration-300">
+            Download
+            <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-sky-400 origin-left scale-x-100 transition-transform duration-300 ease-out"></span>
+          </a>
+          <a href="roadmap.html" class="relative group py-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors duration-300">
+            Roadmap
+            <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-sky-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </a>
+          <a href="https://github.com" target="_blank" rel="noreferrer" class="relative group py-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors duration-300 flex items-center gap-1.5">
+            
+            GitHub
+            <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-sky-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </a>
+        </nav>
+
+        <!-- Right Side Brand CTA Actions -->
+        <div class="hidden md:flex items-center">
+          <a href="docs/index.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-950 hover:bg-sky-400 hover:text-slate-950 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-lg shadow-sky-500/5">
+            Get Started
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Hamburger Icon button for responsiveness -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl border border-white/5 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer" aria-label="Toggle Mobile Menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Responsive Mobile Dropdown Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden absolute top-[calc(100%+0.5rem)] left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-[16px] border border-white/8 p-5 flex flex-col gap-4 rounded-2xl shadow-2xl z-50">
+        <a href="docs/index.html" class="flex items-center justify-between text-sm font-medium py-1.5 border-b border-white/5 text-slate-400 hover:text-white">
+          Docs
+          <i data-lucide="chevron-right" class="w-4 h-4 opacity-50"></i>
+        </a>
+        <a href="download.html" class="flex items-center justify-between text-sm font-semibold text-sky-400 py-1.5 border-b border-white/5">
+          Download
+          <i data-lucide="chevron-right" class="w-4 h-4 opacity-50"></i>
+        </a>
+        <a href="roadmap.html" class="flex items-center justify-between text-sm font-medium py-1.5 border-b border-white/5 text-slate-400 hover:text-white">
+          Roadmap
+          <i data-lucide="chevron-right" class="w-4 h-4 opacity-50"></i>
+        </a>
+        <div class="flex items-center gap-3 mt-2">
+          <a href="https://github.com" target="_blank" rel="noreferrer" class="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-slate-300 hover:text-white">
+            
+            GitHub
+          </a>
+          <a href="docs/index.html" class="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold bg-sky-500 text-slate-950 hover:bg-sky-400">
+            Get Started
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Wrapper -->
+    <main class="relative z-10 pt-32 pb-24 overflow-hidden">
+      
+      <!-- HERO SECTION -->
+      <section id="download-hero" class="max-w-[1280px] mx-auto px-6 mb-16 text-center">
+        <div class="absolute inset-0 z-0 hero-glow opacity-50 pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-[800px] mx-auto">
+          <!-- Small stable release tag badge -->
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-mono font-medium mb-6">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Stable Build v0.6.8 Released
+          </div>
+
+          <!-- Hero Headline -->
+          <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-4 leading-none">
+            Download Shift
+          </h1>
+          
+          <p class="text-slate-300 text-base md:text-lg max-w-[580px] mx-auto mb-8 leading-relaxed font-normal">
+            Download the latest stable release of Shift for your platform. Shift is fully-optimized, local-first, and package-integrated.
+          </p>
+
+          <!-- Current Metadata Block -->
+          <div class="inline-flex flex-wrap justify-center items-center gap-6 px-6 py-3.5 rounded-2xl bg-surface/50 border border-border/80 backdrop-blur-md mb-10 text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="text-slate-500">Latest Build:</span>
+              <strong class="font-mono text-white bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20">v0.6.8</strong>
+            </div>
+            <div class="w-1.5 h-1.5 rounded-full bg-border"></div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-slate-500">Released:</span>
+              <span class="text-teal-400 font-medium">3 Days Ago</span>
+            </div>
+            <div class="w-1.5 h-1.5 rounded-full bg-border"></div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-slate-500">License:</span>
+              <span class="text-slate-300">MIT Open Source</span>
+            </div>
+          </div>
+
+          <!-- Hero CTA Buttons -->
+          <div class="flex flex-wrap justify-center gap-4">
+            <button onclick="openReleaseNotes('v0.6.8')" class="px-6 py-3.5 rounded-lg text-sm font-semibold bg-gradient-to-tr from-violet-600 to-indigo-600 text-white hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-950/20 hover:-translate-y-0.5 cursor-pointer flex items-center gap-2 transition-all">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+              View Release Notes
+            </button>
+            <a href="https://github.com" target="_blank" rel="noreferrer" class="px-6 py-3.5 rounded-lg text-sm font-semibold bg-surface border border-border text-slate-300 hover:bg-[#1a2130] hover:text-white shadow-md flex items-center gap-2 hover:-translate-y-0.5 transition-all">
+              
+              GitHub Releases
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- PLATFORMS SECTION -->
+      <section id="platforms" class="max-w-[1280px] mx-auto px-6 mb-24 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- WINDOWS CARD -->
+          <div id="card-windows" class="platform-card bg-surface/70 border border-border p-8 rounded-2xl flex flex-col justify-between shadow-premium shadow-premium-hover relative group overflow-hidden">
+            <!-- Recommended Ribbon badge -->
+            <div class="recommended-badge hidden absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-[10px] font-mono text-sky-400 font-semibold tracking-wider uppercase">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
+              Recommended OS
+            </div>
+
+            <div class="space-y-6">
+              <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center p-0.5 shadow-md">
+                  <!-- Custom Windows SVG inline to match logo -->
+                  <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0 3.449L9.75 2.1v9.45H0V3.449zM0 12.45h9.75v9.45L0 20.551v-8.102zM10.8 1.95L24 0v11.55H10.8V1.95zM10.8 12.45H24v11.55l-13.2-1.95v-9.6z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-white tracking-tight">Windows</h3>
+                  <p class="text-[11px] text-slate-500">Intel / AMD x64 platforms</p>
+                </div>
+              </div>
+
+              <p class="text-xs text-slate-400 leading-relaxed font-normal">
+                Install Shift on Windows. Built with native task scheduling, automatic path bindings, and custom Powershell sandbox integrations.
+              </p>
+
+              <!-- File List -->
+              <div class="space-y-3.5">
+                <!-- EXE Download Card -->
+                <div class="bg-background/80 border border-border/80 rounded-xl p-4 space-y-3">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-xs font-mono font-bold text-slate-300 truncate">Shift_0.6.8_x64-setup.exe</span>
+                    <span class="text-[10px] font-mono text-slate-500 bg-background px-1.5 py-0.5 rounded border border-border">1.71 MB</span>
+                  </div>
+
+                  <!-- Action -->
+                  <button onclick="triggerDownloadAction('Shift_0.6.8_x64-setup.exe')" class="w-full py-2 rounded-lg text-xs font-semibold bg-sky-500 text-slate-950 hover:bg-sky-400 transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Download Installer (EXE)
+                  </button>
+                </div>
+
+                <!-- MSI Download Card -->
+                <div class="bg-background/80 border border-border/80 rounded-xl p-4 space-y-3">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-xs font-mono font-bold text-slate-300 truncate">Shift_0.6.8_x64_en-US.msi</span>
+                    <span class="text-[10px] font-mono text-slate-500 bg-background px-1.5 py-0.5 rounded border border-border">2.36 MB</span>
+                  </div>
+
+                  <!-- Action -->
+                  <button onclick="triggerDownloadAction('Shift_0.6.8_x64_en-US.msi')" class="w-full py-2 rounded-lg text-xs font-semibold bg-surface border border-border hover:bg-[#1a2130] text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Download MSI Package
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Manual select override trigger -->
+            <div class="pt-6 border-t border-border/50 mt-6 flex justify-end">
+              <button onclick="manuallySelectOS('windows')" class="text-[11px] font-mono text-slate-500 hover:text-sky-400 flex items-center gap-1 transition-colors">
+                <i data-lucide="corner-down-right" class="w-3 h-3"></i> Set as my platform
+              </button>
+            </div>
+          </div>
+
+          <!-- MAC OS CARD -->
+          <div id="card-macos" class="platform-card bg-surface/70 border border-border p-8 rounded-2xl flex flex-col justify-between shadow-premium shadow-premium-hover relative group overflow-hidden">
+            <!-- Recommended Ribbon badge -->
+            <div class="recommended-badge hidden absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-[10px] font-mono text-sky-400 font-semibold tracking-wider uppercase">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
+              Recommended OS
+            </div>
+
+            <div class="space-y-6">
+              <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center shadow-md">
+                  <i data-lucide="apple" class="w-7 h-7"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-white tracking-tight">macOS</h3>
+                  <p class="text-[11px] text-slate-500">Universal for Apple Silicon & Intel</p>
+                </div>
+              </div>
+
+              <p class="text-xs text-slate-400 leading-relaxed font-normal">
+                Install Shift on macOS. Pre-registered universal bundle with custom sandboxed shell integrations, native terminal bindings, and spotlight utility.
+              </p>
+
+              <!-- File List -->
+              <div class="space-y-3.5">
+                <!-- DMG Download Card -->
+                <div class="bg-background/80 border border-border/80 rounded-xl p-4 space-y-3">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-xs font-mono font-bold text-slate-300 truncate">Shift_0.6.8_universal.dmg</span>
+                    <span class="text-[10px] font-mono text-slate-500 bg-background px-1.5 py-0.5 rounded border border-border">4.96 MB</span>
+                  </div>
+
+                  <!-- Action -->
+                  <button onclick="triggerDownloadAction('Shift_0.6.8_universal.dmg')" class="w-full py-2 rounded-lg text-xs font-semibold bg-sky-500 text-slate-950 hover:bg-sky-400 transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Download App Image (DMG)
+                  </button>
+                </div>
+
+                <!-- TAR.GZ Download Card -->
+                <div class="bg-background/80 border border-border/80 rounded-xl p-4 space-y-3">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-xs font-mono font-bold text-slate-300 truncate">Shift_universal.app.tar.gz</span>
+                    <span class="text-[10px] font-mono text-slate-500 bg-background px-1.5 py-0.5 rounded border border-border">4.57 MB</span>
+                  </div>
+
+                  <!-- Action -->
+                  <button onclick="triggerDownloadAction('Shift_universal.app.tar.gz')" class="w-full py-2 rounded-lg text-xs font-semibold bg-surface border border-border hover:bg-[#1a2130] text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Download TAR Archive
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Manual select override trigger -->
+            <div class="pt-6 border-t border-border/50 mt-6 flex justify-end">
+              <button onclick="manuallySelectOS('macos')" class="text-[11px] font-mono text-slate-500 hover:text-sky-400 flex items-center gap-1 transition-colors">
+                <i data-lucide="corner-down-right" class="w-3 h-3"></i> Set as my platform
+              </button>
+            </div>
+          </div>
+
+          <!-- LINUX CARD -->
+          <div id="card-linux" class="platform-card bg-surface/70 border border-border p-8 rounded-2xl flex flex-col justify-between shadow-premium shadow-premium-hover relative group overflow-hidden">
+            <!-- Recommended Ribbon badge -->
+            <div class="recommended-badge hidden absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-[10px] font-mono text-sky-400 font-semibold tracking-wider uppercase">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
+              Recommended OS
+            </div>
+
+            <div class="space-y-6">
+              <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center shadow-md">
+                  <i data-lucide="terminal" class="w-7 h-7"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-white tracking-tight">Linux</h3>
+                  <p class="text-[11px] text-slate-500">Debian, RedHat, Custom AppImages</p>
+                </div>
+              </div>
+
+              <p class="text-xs text-slate-400 leading-relaxed font-normal">
+                Install Shift on Linux. Direct support for AppImage execution sandboxing, Debian repositories (.deb), and RPM metadata.
+              </p>
+
+              <!-- File List -->
+              <div class="space-y-3.5">
+                <!-- AppImage Card -->
+                <div class="bg-background/80 border border-border/80 rounded-xl p-4 space-y-3">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-xs font-mono font-bold text-slate-300 truncate">Shift_0.6.8_amd64.AppImage</span>
+                    <span class="text-[10px] font-mono text-slate-500 bg-background px-1.5 py-0.5 rounded border border-border">76.9 MB</span>
+                  </div>
+
+                  <!-- Action -->
+                  <button onclick="triggerDownloadAction('Shift_0.6.8_amd64.AppImage')" class="w-full py-2 rounded-lg text-xs font-semibold bg-sky-500 text-slate-950 hover:bg-sky-400 transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Download AppImage
+                  </button>
+                </div>
+
+                <!-- Deb Package Card -->
+                <div class="bg-background/80 border border-border/80 rounded-xl p-4 space-y-3">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-xs font-mono font-bold text-slate-300 truncate">Shift_0.6.8_amd64.deb</span>
+                    <span class="text-[10px] font-mono text-slate-500 bg-background px-1.5 py-0.5 rounded border border-border">2.75 MB</span>
+                  </div>
+
+                  <!-- Action -->
+                  <button onclick="triggerDownloadAction('Shift_0.6.8_amd64.deb')" class="w-full py-2 rounded-lg text-xs font-semibold bg-surface border border-border hover:bg-[#1a2130] text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Download Debian Package
+                  </button>
+                </div>
+
+                <!-- RPM Card -->
+                <div class="bg-background/80 border border-border/80 rounded-xl p-4 space-y-3">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-xs font-mono font-bold text-slate-300 truncate">Shift-0.6.8-1.x86_64.rpm</span>
+                    <span class="text-[10px] font-mono text-slate-500 bg-background px-1.5 py-0.5 rounded border border-border">2.75 MB</span>
+                  </div>
+
+                  <!-- Action -->
+                  <button onclick="triggerDownloadAction('Shift-0.6.8-1.x86_64.rpm')" class="w-full py-2 rounded-lg text-xs font-semibold bg-surface border border-border hover:bg-[#1a2130] text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Download RedHat Package
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Manual select override trigger -->
+            <div class="pt-6 border-t border-border/50 mt-6 flex justify-end">
+              <button onclick="manuallySelectOS('linux')" class="text-[11px] font-mono text-slate-500 hover:text-sky-400 flex items-center gap-1 transition-colors">
+                <i data-lucide="corner-down-right" class="w-3 h-3"></i> Set as my platform
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- STATS PANEL & KEY NUMBERS -->
+      <section id="download-stats" class="max-w-[1280px] mx-auto px-6 mb-24 relative">
+        <div class="bg-surface/50 border border-border rounded-2xl p-8 backdrop-blur-md">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center md:text-left">
+            
+            <div class="border-b md:border-b-0 md:border-r border-border/80 pb-6 md:pb-0 md:pr-6 space-y-1">
+              <span class="text-xs text-slate-500 uppercase font-mono tracking-wider">Total Downloads</span>
+              <div id="stats-downloads-count" data-value="15000" class="text-3xl font-extrabold text-white font-mono">15,000+</div>
+              <p class="text-[11px] text-slate-400 flex items-center justify-center md:justify-start gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Real-time active setups
+              </p>
+            </div>
+
+            <div class="border-b md:border-b-0 md:border-r border-border/80 pb-6 md:pb-0 md:pr-6 space-y-1">
+              <span class="text-xs text-slate-500 uppercase font-mono tracking-wider">GitHub Stars</span>
+              <div class="text-3xl font-extrabold text-white font-mono flex items-center justify-center md:hover:scale-105 transition-transform duration-200 md:justify-start gap-1">
+                2,300+
+              </div>
+              <p class="text-[11px] text-slate-400 flex items-center justify-center md:justify-start gap-1">
+                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400"></i> Starred community repo
+              </p>
+            </div>
+
+            <div class="border-b sm:border-b-0 sm:border-r border-border/80 pb-6 sm:pb-0 sm:pr-6 space-y-1">
+              <span class="text-xs text-slate-500 uppercase font-mono tracking-wider">Active Contributors</span>
+              <div class="text-3xl font-extrabold text-white font-mono">18+</div>
+              <p class="text-[11px] text-slate-400 flex items-center justify-center md:justify-start gap-1">
+                <i data-lucide="users" class="w-3.5 h-3.5 text-violet-400"></i> Code merges accepted
+              </p>
+            </div>
+
+            <div class="space-y-1">
+              <span class="text-xs text-slate-500 uppercase font-mono tracking-wider">Latest Stable</span>
+              <div class="text-3xl font-extrabold text-teal-400 font-mono">v0.6.8</div>
+              <p class="text-[11px] text-slate-400 flex items-center justify-center md:justify-start gap-1">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-teal-400"></i> Passed security audit
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ALL ASSETS GRID (GITHUB-LIKE TABLE) -->
+      <section id="all-assets" class="max-w-[1280px] mx-auto px-6 mb-24 relative">
+        <div class="flex items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-2xl font-bold tracking-tight text-white mb-1">Release Assets</h2>
+            <p class="text-xs text-slate-400">Full manifest ofcompiled distributions for build v0.6.8</p>
+          </div>
+          <a href="https://github.com" target="_blank" rel="noreferrer" class="text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-1.5">
+            View Source on GitHub 
+          </a>
+        </div>
+
+        <div class="border border-border/80 bg-surface/30 backdrop-blur-md rounded-2xl overflow-hidden shadow-premium">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left font-sans text-xs">
+              <!-- Table Header -->
+              <thead class="bg-surface/90 border-b border-border/60 text-slate-400 uppercase tracking-wider font-mono text-[10px]">
+                <tr>
+                  <th class="px-6 py-4 font-semibold">File Name</th>
+                  <th class="px-6 py-4 font-semibold">Platform / Tag</th>
+                  <th class="px-6 py-4 font-semibold">Size</th>
+
+                  <th class="px-6 py-4 font-semibold text-right">Download</th>
+                </tr>
+              </thead>
+              <!-- Table Body -->
+              <tbody class="divide-y divide-border/40 text-slate-300">
+                
+                <!-- ROW 1 -->
+                <tr class="hover:bg-surface/50 transitionduration-150">
+                  <td class="px-6 py-4 font-mono font-bold text-white flex items-center gap-2">
+                    <i data-lucide="file-archive" class="w-4 h-4 text-purple-400"></i>
+                    <span>Shift-0.6.8-1.x86_64.rpm</span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-400">Linux RPM</td>
+                  <td class="px-6 py-4 font-mono">2.75 MB</td>
+
+                  <td class="px-6 py-4 text-right">
+                    <button onclick="triggerDownloadAction('Shift-0.6.8-1.x86_64.rpm')" class="px-3 py-1.5 rounded-md bg-surface border border-border hover:bg-sky-500 hover:text-slate-950 font-semibold transition" title="Download">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- ROW 2 -->
+                <tr class="hover:bg-surface/50 transition duration-150">
+                  <td class="px-6 py-4 font-mono font-bold text-white flex items-center gap-2">
+                    <i data-lucide="box" class="w-4 h-4 text-blue-400"></i>
+                    <span>Shift_0.6.8_amd64.AppImage</span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-400">Linux AppImage</td>
+                  <td class="px-6 py-4 font-mono">76.9 MB</td>
+
+                  <td class="px-6 py-4 text-right">
+                    <button onclick="triggerDownloadAction('Shift_0.6.8_amd64.AppImage')" class="px-3 py-1.5 rounded-md bg-surface border border-border hover:bg-sky-500 hover:text-slate-950 font-semibold transition" title="Download">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- ROW 3 -->
+                <tr class="hover:bg-surface/50 transition duration-150">
+                  <td class="px-6 py-4 font-mono font-bold text-white flex items-center gap-2">
+                    <i data-lucide="file-archive" class="w-4 h-4 text-purple-400"></i>
+                    <span>Shift_0.6.8_amd64.deb</span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-400">Linux DEB</td>
+                  <td class="px-6 py-4 font-mono">2.75 MB</td>
+
+                  <td class="px-6 py-4 text-right">
+                    <button onclick="triggerDownloadAction('Shift_0.6.8_amd64.deb')" class="px-3 py-1.5 rounded-md bg-surface border border-border hover:bg-sky-500 hover:text-slate-950 font-semibold transition" title="Download">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- ROW 4 -->
+                <tr class="hover:bg-surface/50 transition duration-150">
+                  <td class="px-6 py-4 font-mono font-bold text-white flex items-center gap-2">
+                    <i data-lucide="mouse-pointer-square" class="w-4 h-4 text-orange-400"></i>
+                    <span>Shift_0.6.8_universal.dmg</span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-400">macOS DMG</td>
+                  <td class="px-6 py-4 font-mono">4.96 MB</td>
+
+                  <td class="px-6 py-4 text-right">
+                    <button onclick="triggerDownloadAction('Shift_0.6.8_universal.dmg')" class="px-3 py-1.5 rounded-md bg-surface border border-border hover:bg-sky-500 hover:text-slate-950 font-semibold transition" title="Download">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- ROW 5 -->
+                <tr class="hover:bg-surface/50 transition duration-150">
+                  <td class="px-6 py-4 font-mono font-bold text-white flex items-center gap-2">
+                    <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-400"></i>
+                    <span>Shift_0.6.8_x64-setup.exe</span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-400">Windows Executable</td>
+                  <td class="px-6 py-4 font-mono">1.71 MB</td>
+
+                  <td class="px-6 py-4 text-right">
+                    <button onclick="triggerDownloadAction('Shift_0.6.8_x64-setup.exe')" class="px-3 py-1.5 rounded-md bg-surface border border-border hover:bg-sky-500 hover:text-slate-950 font-semibold transition" title="Download">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- ROW 6 -->
+                <tr class="hover:bg-surface/50 transition duration-150">
+                  <td class="px-6 py-4 font-mono font-bold text-white flex items-center gap-2">
+                    <i data-lucide="package" class="w-4 h-4 text-blue-400"></i>
+                    <span>Shift_0.6.8_x64_en-US.msi</span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-400">Windows MSI</td>
+                  <td class="px-6 py-4 font-mono">2.36 MB</td>
+
+                  <td class="px-6 py-4 text-right">
+                    <button onclick="triggerDownloadAction('Shift_0.6.8_x64_en-US.msi')" class="px-3 py-1.5 rounded-md bg-surface border border-border hover:bg-sky-500 hover:text-slate-950 font-semibold transition" title="Download">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- ROW 7 -->
+                <tr class="hover:bg-surface/50 transition duration-150">
+                  <td class="px-6 py-4 font-mono font-bold text-white flex items-center gap-2">
+                    <i data-lucide="folder-archive" class="w-4 h-4 text-teal-400"></i>
+                    <span>Shift_universal.app.tar.gz</span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-400">macOS TAR Archive</td>
+                  <td class="px-6 py-4 font-mono">4.57 MB</td>
+
+                  <td class="px-6 py-4 text-right">
+                    <button onclick="triggerDownloadAction('Shift_universal.app.tar.gz')" class="px-3 py-1.5 rounded-md bg-surface border border-border hover:bg-sky-500 hover:text-slate-950 font-semibold transition" title="Download">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- ROW 8 (Source Code ZIP) -->
+                <tr class="hover:bg-surface/50 transition duration-150">
+                  <td class="px-6 py-4 font-mono font-bold text-white flex items-center gap-2">
+                    <i data-lucide="file-code" class="w-4 h-4 text-slate-400"></i>
+                    <span>Source Code (ZIP)</span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-400">Universal Source</td>
+                  <td class="px-6 py-4 font-mono">1.22 MB</td>
+
+                  <td class="px-6 py-4 text-right">
+                    <a href="https://github.com" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md bg-surface border border-border hover:bg-sky-500 hover:text-slate-950 font-semibold transition" title="Download">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    </a>
+                  </td>
+                </tr>
+
+                <!-- ROW 9 (Source Code TAR.GZ) -->
+                <tr class="hover:bg-surface/50 transition duration-150">
+                  <td class="px-6 py-4 font-mono font-bold text-white flex items-center gap-2">
+                    <i data-lucide="file-code" class="w-4 h-4 text-slate-400"></i>
+                    <span>Source Code (TAR.GZ)</span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-400">Universal Source</td>
+                  <td class="px-6 py-4 font-mono">1.05 MB</td>
+
+                  <td class="px-6 py-4 text-right">
+                    <a href="https://github.com" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md bg-surface border border-border hover:bg-sky-500 hover:text-slate-950 font-semibold transition" title="Download">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    </a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLI TERMINAL INSTALLATION GUIDE -->
+      <section id="cli-installation" class="max-w-[850px] mx-auto px-6 mb-24 relative">
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 text-xs font-mono font-medium mb-3">
+            <i data-lucide="terminal" class="w-3.5 h-3.5 animate-pulse text-sky-400"></i>
+            CLI version installation
+          </div>
+          <h2 class="text-2xl font-bold tracking-tight text-white mb-2">📦 Instalasi CLI</h2>
+          <p class="text-xs text-slate-400 max-w-[550px] mx-auto">Instal Shift secara instan lewat satu baris perintah terminal di Linux, macOS, maupun Windows.</p>
+        </div>
+
+        <div class="bg-surface/60 border border-border rounded-2xl overflow-hidden shadow-premium">
+          <!-- Terminal-like Header tab switcher for CLI -->
+          <div class="px-5 py-3 bg-[#0c0f16]/90 border-b border-border flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-1.5">
+              <button id="cli-tab-unix" onclick="switchCliPlatform('unix')" class="cli-plat-btn terminal-tab-active px-3 py-1.5 rounded-lg border text-[11px] font-mono font-medium transition duration-150 flex items-center gap-1.5">
+                <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Penguin Linux / Apple macOS
+              </button>
+              <button id="cli-tab-windows" onclick="switchCliPlatform('windows')" class="cli-plat-btn px-3 py-1.5 rounded-lg border border-border bg-surface/50 text-[11px] font-mono font-medium text-slate-400 hover:text-white transition duration-150 flex items-center gap-1.5">
+                <i data-lucide="monitor" class="w-3.5 h-3.5"></i> Windows PowerShell
+              </button>
+            </div>
+            
+            <div class="hidden sm:flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500/60 inline-block"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60 inline-block"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60 inline-block"></span>
+            </div>
+          </div>
+
+          <!-- Command Blocks Container -->
+          <div class="p-6 bg-surface/10 space-y-6">
+            
+            <!-- UNIX SECTION (Linux & macOS) -->
+            <div id="cli-content-unix" class="cli-platform-content space-y-6">
+              
+              <!-- Quick Install -->
+              <div class="space-y-2">
+                <div class="flex items-center justify-between gap-2">
+                  <h4 class="text-xs font-bold text-teal-400 tracking-wider uppercase font-mono flex items-center gap-1.5">
+                    <span class="flex h-2 w-2 relative">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                    </span>
+                    Quick Install (Recommended)
+                  </h4>
+                  <span class="text-[10px] font-mono text-slate-500">Bash One-Liner</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed font-sans">Jalankan one-liner ini untuk menginstall Shift secara otomatis:</p>
+                <div class="bg-background border border-border/85 rounded-xl p-4 flex items-center justify-between gap-4">
+                  <div class="font-mono text-xs text-slate-200 overflow-x-auto truncate pr-2 flex items-center gap-1.5 select-all">
+                    <span class="text-sky-500 shrink-0">$</span>
+                    <span class="text-pink-400">curl</span> <span class="text-slate-400">-fsSL</span> <span class="text-teal-400">https://raw.githubusercontent.com/DzarelDeveloper/Shift/main/install.sh</span> <span class="text-slate-400">|</span> <span class="text-sky-400 font-semibold">bash</span>
+                  </div>
+                  <button id="btn-copy-install-unix" onclick="copyText('curl -fsSL https://raw.githubusercontent.com/DzarelDeveloper/Shift/main/install.sh | bash', 'btn-copy-install-unix', 'Unix installer command copied!')" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-surface border border-border text-[11px] font-semibold text-slate-300 hover:text-white transition shrink-0 cursor-pointer">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Script
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- WINDOWS SECTION -->
+            <div id="cli-content-windows" class="cli-platform-content hidden space-y-6">
+              
+              <!-- Quick Install -->
+              <div class="space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                  <h4 class="text-xs font-bold text-teal-400 tracking-wider uppercase font-mono flex items-center gap-1.5">
+                    <span class="flex h-2 w-2 relative">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                    </span>
+                    Quick Install (Recommended)
+                  </h4>
+                  <span class="text-[10px] font-mono text-blue-400 font-semibold">PowerShell</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed font-sans">Buka PowerShell as Administrator dan jalankan:</p>
+                
+                <div class="space-y-4 bg-background border border-border/80 rounded-xl p-4">
+                  <!-- Step 1 -->
+                  <div class="space-y-1.5">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest font-bold">Langkah 1: Set Execution Policy</span>
+                      <button id="btn-copy-win-step1" onclick="copyText('Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force', 'btn-copy-win-step1', 'Step 1 script copied!')" class="p-1 px-2.5 rounded bg-surface border border-border/60 hover:border-sky-500/30 text-slate-300 hover:text-white transition text-[10px] flex items-center gap-1.5 font-semibold cursor-pointer">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Code
+                      </button>
+                    </div>
+                    <code class="block font-mono text-xs text-pink-400 select-all overflow-x-auto truncate bg-slate-950/40 p-3 rounded border border-border/40">Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force</code>
+                  </div>
+                  
+                  <!-- Step 2 -->
+                  <div class="space-y-1.5 pt-3 border-t border-border/40">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest font-bold">Langkah 2: Ambil & Jalankan Script</span>
+                      <button id="btn-copy-win-step2" onclick="copyText(`Invoke-Expression (Invoke-WebRequest -Uri &quot;https://raw.githubusercontent.com/DzarelDeveloper/Shift/main/install.ps1&quot; -UseBasicParsing).Content`, 'btn-copy-win-step2', 'Step 2 script copied!')" class="p-1 px-2.5 rounded bg-surface border border-border/60 hover:border-sky-500/30 text-slate-300 hover:text-white transition text-[10px] flex items-center gap-1.5 font-semibold cursor-pointer">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Code
+                      </button>
+                    </div>
+                    <code class="block font-mono text-xs text-pink-400 select-all overflow-x-auto whitespace-pre-wrap bg-slate-950/40 p-3 rounded border border-border/40 font-semibold">Invoke-Expression (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/DzarelDeveloper/Shift/main/install.ps1" -UseBasicParsing).Content</code>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Troubleshooting Banner -->
+              <div class="p-4 bg-amber-500/5 rounded-xl border border-amber-500/25 space-y-3.5">
+                <div class="flex items-start gap-2.5 text-amber-300">
+                  <i data-lucide="alert-triangle" class="w-4 h-4 shrink-0 mt-0.5 text-amber-400 animate-pulse"></i>
+                  <div class="space-y-1 flex-1">
+                    <h5 class="text-xs font-bold leading-normal tracking-wide uppercase font-mono text-amber-200">Troubleshooting: Error "git is not recognized"</h5>
+                    <p class="text-xs text-slate-400 font-sans leading-relaxed">Jika Anda mendapatkan error yang menyebutkan <span class="text-amber-200 font-semibold">The term 'git' is not recognized</span> saat instalasi di Windows, itu berarti Git belum terinstal. Anda dapat menginstalnya dengan menjalankan perintah berikut di PowerShell:</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-center justify-between gap-4 bg-slate-950/40 border border-amber-500/10 rounded-lg p-3">
+                  <code class="font-mono text-xs text-amber-200 select-all overflow-x-auto truncate pr-2 flex-grow">winget install --id Git.Git -e --source winget</code>
+                  <button id="btn-copy-winget" onclick="copyText('winget install --id Git.Git -e --source winget', 'btn-copy-winget', 'Git install command copied!')" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded bg-amber-500/10 border border-amber-500/20 text-[10px] font-semibold text-amber-300 hover:text-white transition shrink-0 cursor-pointer">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Command
+                  </button>
+                </div>
+                <p class="text-[10px] text-amber-400/50 pl-0.5 leading-relaxed">Setelah selesai, tutup PowerShell, buka kembali yang baru, dan jalankan ulang perintah instalasi di atas.</p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SYSTEM REQUIREMENTS SECTION -->
+      <section id="requirements" class="max-w-[1280px] mx-auto px-6 mb-24 relative">
+        <h2 class="text-2xl font-bold tracking-tight text-white mb-2 text-center">System Requirements</h2>
+        <p class="text-xs text-slate-400 text-center mb-10 max-w-[500px] mx-auto">Verify that your machine supports running the Shift local terminal playground environment.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Windows Requirements -->
+          <div class="bg-surface/40 border border-border p-6 rounded-2xl space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center border border-blue-500/20">
+                <i data-lucide="monitor" class="w-4 h-4"></i>
+              </div>
+              <h3 class="text-sm font-bold text-white">Windows</h3>
+            </div>
+            <ul class="space-y-2 text-xs text-slate-400 font-sans">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Windows 10 or higher
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> 64-bit Architecture (x64)
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Windows PowerShell 5.1+
+              </li>
+            </ul>
+          </div>
+
+          <!-- macOS Requirements -->
+          <div class="bg-surface/40 border border-border p-6 rounded-2xl space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-orange-500/10 text-orange-400 flex items-center justify-center border border-orange-500/20">
+                <i data-lucide="apple" class="w-4 h-4"></i>
+              </div>
+              <h3 class="text-sm font-bold text-white">macOS</h3>
+            </div>
+            <ul class="space-y-2 text-xs text-slate-400 font-sans">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> macOS 12+ (Monterey or higher)
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Apple Silicon (M1/M2/M3) or Intel Core
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Xcode Command Line Tools installed
+              </li>
+            </ul>
+          </div>
+
+          <!-- Linux Requirements -->
+          <div class="bg-surface/40 border border-border p-6 rounded-2xl space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center border border-purple-500/20">
+                <i data-lucide="terminal" class="w-4 h-4"></i>
+              </div>
+              <h3 class="text-sm font-bold text-white">Linux</h3>
+            </div>
+            <ul class="space-y-2 text-xs text-slate-400 font-sans">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Ubuntu 22.04+ or Debian 12+
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Fedora 40+ or Arch Linux
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Fuse Library support (for AppImages)
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECURITY INSTRUCTIONS -->
+      <section id="verification" class="max-w-[800px] mx-auto px-6 mb-24 relative">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl font-bold tracking-tight text-white mb-2">Verify Download Integrity</h2>
+          <p class="text-xs text-slate-400 max-w-[500px] mx-auto">Users can verify SHA256 checksums to ensure downloaded installer files have not been modified or corrupted.</p>
+        </div>
+
+        <div class="bg-surface/60 border border-border rounded-2xl overflow-hidden shadow-premium">
+          <!-- Terminal-like Header tab switcher -->
+          <div class="px-5 py-3 bg-[#0c0f16]/80 border-b border-border flex items-center justify-between">
+            <div class="flex items-center gap-1.5">
+              <button id="tab-windows" onclick="switchVerificationTab('windows')" class="tab-btn px-3 py-1.5 rounded-lg border border-border bg-surface/50 text-[11px] font-mono font-medium text-slate-400 hover:text-white transition duration-150">
+                Windows
+              </button>
+              <button id="tab-macos" onclick="switchVerificationTab('macos')" class="tab-btn px-3 py-1.5 rounded-lg border border-border bg-surface/50 text-[11px] font-mono font-medium text-slate-400 hover:text-white transition duration-150">
+                macOS
+              </button>
+              <button id="tab-linux" onclick="switchVerificationTab('linux')" class="tab-btn px-3 py-1.5 rounded-lg border border-border bg-surface/50 text-[11px] font-mono font-medium text-slate-400 hover:text-white transition duration-150">
+                Linux
+              </button>
+            </div>
+            
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500/60 inline-block"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/60 inline-block"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/60 inline-block"></span>
+            </div>
+          </div>
+
+          <!-- Command Blocks Container -->
+          <div class="p-5 bg-surface/20">
+            
+            <!-- WINDOWS COMMAND -->
+            <div id="command-windows" class="code-command-block space-y-4">
+              <p class="text-xs text-slate-400 font-sans leading-relaxed">Run the following command in PowerShell to compute the SHA256 hash of the download:</p>
+              <div class="bg-background border border-border/85 rounded-xl p-4 flex items-center justify-between gap-4">
+                <code class="font-mono text-xs text-pink-400 select-all overflow-x-auto truncate pr-2">certutil -hashfile Shift_0.6.8_x64-setup.exe SHA256</code>
+                <button id="btn-copy-cmd-win" onclick="copyText('certutil -hashfile Shift_0.6.8_x64-setup.exe SHA256', 'btn-copy-cmd-win', 'Powershell command copied!')" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-surface border border-border text-[11px] font-semibold text-slate-300 hover:text-white transition cursor-pointer">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Command
+                </button>
+              </div>
+              <p class="text-[10px] text-slate-500 leading-relaxed">Expected Output matches: <code class="text-slate-400 font-mono">a7d8c910f1b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c</code></p>
+            </div>
+
+            <!-- MACOS COMMAND -->
+            <div id="command-macos" class="code-command-block hidden space-y-4">
+              <p class="text-xs text-slate-400 font-sans leading-relaxed">Run this command in the macOS Terminal app to inspect file integrity:</p>
+              <div class="bg-background border border-border/85 rounded-xl p-4 flex items-center justify-between gap-4">
+                <code class="font-mono text-xs text-pink-400 select-all overflow-x-auto truncate pr-2">shasum -a 256 Shift_0.6.8_universal.dmg</code>
+                <button id="btn-copy-cmd-mac" onclick="copyText('shasum -a 256 Shift_0.6.8_universal.dmg', 'btn-copy-cmd-mac', 'OSX Terminal command copied!')" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-surface border border-border text-[11px] font-semibold text-slate-300 hover:text-white transition cursor-pointer">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Command
+                </button>
+              </div>
+              <p class="text-[10px] text-slate-500 leading-relaxed">Expected Output matches: <code class="text-slate-400 font-mono">d3e4f5a6b7c8d9e0f1a2b3c4d5e6f708192a3b4c5d6e7f8019aabcbccddeef00</code></p>
+            </div>
+
+            <!-- LINUX COMMAND -->
+            <div id="command-linux" class="code-command-block hidden space-y-4">
+              <p class="text-xs text-slate-400 font-sans leading-relaxed">Use the standard sha256sum compiler command in bash/zsh:</p>
+              <div class="bg-background border border-border/85 rounded-xl p-4 flex items-center justify-between gap-4">
+                <code class="font-mono text-xs text-pink-400 select-all overflow-x-auto truncate pr-2">sha256sum Shift_0.6.8_amd64.AppImage</code>
+                <button id="btn-copy-cmd-linux" onclick="copyText('sha256sum Shift_0.6.8_amd64.AppImage', 'btn-copy-cmd-linux', 'Linux bash command copied!')" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-surface border border-border text-[11px] font-semibold text-slate-300 hover:text-white transition cursor-pointer">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Command
+                </button>
+              </div>
+              <p class="text-[10px] text-slate-500 leading-relaxed">Expected Output matches: <code class="text-slate-400 font-mono">b8c9d0e1f2a3b4c5d6e7f80192a3b4c5d6e7f80192a3b4c5d6e7f80192a3b4c5</code></p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- PREVIOUS RELEASES HISTORY -->
+      <section id="history" class="max-w-[800px] mx-auto px-6 relative">
+        <h2 class="text-2xl font-bold tracking-tight text-white mb-2 text-center font-sans">Previous Releases</h2>
+        <p class="text-xs text-slate-400 text-center mb-10 max-w-[500px] mx-auto">Explore older distributions and review release history changelogs below.</p>
+
+        <div class="border border-border/80 bg-surface/30 backdrop-blur-md rounded-2xl overflow-hidden shadow-premium">
+          <div class="divide-y divide-border/50 text-xs font-sans text-slate-300">
+            
+            <!-- Release 1 -->
+            <div class="p-5 flex flex-wrap items-center justify-between gap-4 hover:bg-surface/50 transition duration-150">
+              <div class="flex items-center gap-3">
+                <span class="text-sm font-extrabold text-white font-mono">v0.6.8</span>
+                <span class="px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 text-[10px] font-mono font-medium border border-emerald-500/20">Latest</span>
+                <span class="text-slate-500 text-[11px]">3 Days Ago</span>
+              </div>
+              <button onclick="openReleaseNotes('v0.6.8')" class="text-sky-400 hover:text-sky-300 font-semibold flex items-center gap-1 transition-colors cursor-pointer text-xs">
+                View Release Notes <i data-lucide="chevron-right" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+            <!-- Release 2 -->
+            <div class="p-5 flex flex-wrap items-center justify-between gap-4 hover:bg-surface/50 transition duration-150">
+              <div class="flex items-center gap-3">
+                <span class="text-sm font-extrabold text-white font-mono">v0.6.7</span>
+                <span class="text-slate-500 text-[11px]">1 Month Ago</span>
+              </div>
+              <button onclick="openReleaseNotes('v0.6.7')" class="text-slate-400 hover:text-sky-400 font-semibold flex items-center gap-1 transition-colors cursor-pointer text-xs">
+                View Release Notes <i data-lucide="chevron-right" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+            <!-- Release 3 -->
+            <div class="p-5 flex flex-wrap items-center justify-between gap-4 hover:bg-surface/50 transition duration-150">
+              <div class="flex items-center gap-3">
+                <span class="text-sm font-extrabold text-white font-mono">v0.6.6</span>
+                <span class="text-slate-500 text-[11px]">2 Months Ago</span>
+              </div>
+              <button onclick="openReleaseNotes('v0.6.6')" class="text-slate-400 hover:text-sky-400 font-semibold flex items-center gap-1 transition-colors cursor-pointer text-xs">
+                View Release Notes <i data-lucide="chevron-right" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+            <!-- Release 4 -->
+            <div class="p-5 flex flex-wrap items-center justify-between gap-4 hover:bg-surface/50 transition duration-150">
+              <div class="flex items-center gap-3">
+                <span class="text-sm font-extrabold text-white font-mono">v0.6.5</span>
+                <span class="text-slate-500 text-[11px]">3 Months Ago</span>
+              </div>
+              <button onclick="openReleaseNotes('v0.6.5')" class="text-slate-400 hover:text-sky-400 font-semibold flex items-center gap-1 transition-colors cursor-pointer text-xs">
+                View Release Notes <i data-lucide="chevron-right" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Prominent CTA Section -->
+    <section id="download-cta" class="relative z-10 max-w-5xl mx-auto px-6 mt-24 mb-16 text-center">
+      <div class="relative py-16 px-8 md:py-20 md:px-16 rounded-3xl overflow-hidden border border-white/5 bg-gradient-to-b from-surface to-background shadow-2xl">
+        <!-- Spotlight glow background -->
+        <div class="absolute inset-0 pointer-events-none z-0 opacity-15">
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-sky-500 blur-[130px]"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-2xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4 font-sans">
+            Ready to explore the features?
+          </h2>
+          <p class="text-slate-400 text-sm md:text-base mb-8 leading-relaxed max-w-md mx-auto">
+            A complete step-by-step documentation to set up your workspaces, workflows, and plugins.
+          </p>
+          
+          <div class="flex flex-wrap justify-center items-center gap-4">
+            <a href="docs/index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-white text-slate-950 hover:bg-sky-400 hover:text-slate-950 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg font-sans">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+              Read Documentation
+            </a>
+            <a href="https://github.com" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-surface border border-border text-slate-300 hover:bg-slate-900/60 hover:text-white hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md font-sans">
+              <i data-lucide="github" class="w-4 h-4"></i>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER PANEL -->
+    <footer class="border-t border-border bg-[#0a0d14] relative z-10 py-12">
+      <div class="max-w-[1280px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Left Brand segment -->
+        <div class="space-y-4 md:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <img src="https://raw.githubusercontent.com/DzarelDeveloper/BloggerImg/refs/heads/main/logo-s.png" alt="Shift Logo" class="w-8 h-8 rounded-xl shadow-md">
+            <span class="text-lg font-bold tracking-tight text-white">Shift</span>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed max-w-[280px]">
+            The lightweight, customizable workspace launcher tailored specifically for modern developers. Instantly restore programs, directories, and URLs locally.
+          </p>
+        </div>
+
+        <!-- Links collection column -->
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Resources</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><a href="index.html#documentation" class="hover:text-sky-400 transition-colors">Documentation</a></li>
+            <li><a href="https://github.com" target="_blank" rel="noreferrer" class="hover:text-sky-400 transition-colors flex items-center gap-1">GitHub <i data-lucide="external-link" class="w-3 h-3"></i></a></li>
+            <li><a href="download.html" class="hover:text-sky-400 transition-colors">Latest Releases</a></li>
+            <li><a href="https://github.com" target="_blank" rel="noreferrer" class="hover:text-sky-400 transition-colors">Submit an Issue</a></li>
+          </ul>
+        </div>
+
+        <!-- Details column -->
+        <div class="space-y-4">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">About</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Shift is built for developers who seek speed, privacy, and minimalism.
+          </p>
+          <div class="text-[11px] font-mono text-slate-500">
+            Created by <span class="text-teal-400">Dzarel</span>. Licensed under MIT.
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+
+    <!-- INTERACTIVE RELEASE NOTES MODAL OVERLAY -->
+    <div id="notes-modal" class="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 items-center justify-center p-4 hidden animate-fade-in">
+      <div class="bg-surface border border-border w-full max-w-[620px] rounded-2xl shadow-premium overflow-hidden transform scale-100 transition duration-300">
+        
+        <!-- Modal header info -->
+        <div class="px-6 py-5 border-b border-border bg-[#161d2d]/80 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400">
+              <i data-lucide="book" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h3 id="notes-modal-title" class="text-base font-bold text-white leading-tight">Release Notes</h3>
+              <div id="notes-modal-meta" class="flex items-center gap-2 mt-1 text-[11px]">
+                <!-- Filled dynamically -->
+              </div>
+            </div>
+          </div>
+          <button id="close-notes-modal" class="p-1.5 rounded-lg border border-border bg-[#0c0f16] text-slate-400 hover:text-white transition duration-200 cursor-pointer" aria-label="Close Modal">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Modal scrollable content body -->
+        <div class="p-6 text-sm text-slate-300 space-y-4 max-h-[380px] overflow-y-auto">
+          <div id="notes-modal-body" class="space-y-3 font-sans">
+            <!-- Programmatically injected HTML -->
+          </div>
+        </div>
+
+        <!-- Modal Footer instructions -->
+        <div class="px-6 py-4 border-t border-border bg-background/50 flex items-center justify-between text-[11px] text-slate-500">
+          <span>Read ESC or click outside to dismiss</span>
+          <span class="text-violet-400 font-mono font-semibold">Shift Installer Portal</span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Lucide Icons Library Bundle SVG Converter -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      // Load and convert icons upon load
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+      });
+    </script>
+    
+    <!-- Custom Download App Controller -->
+    <script src="download.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,97 @@
+/* Shift Download Page CSS */
+
+/* Custom fonts custom variables */
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Base grid layout overlay - matching landing page style */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Spotlight glow effect matching script */
+.radial-glow {
+  background: radial-gradient(circle 500px at var(--x, 50%) var(--y, 50%), rgba(56, 189, 248, 0.12), rgba(139, 92, 246, 0.04) 50%, transparent 80%);
+}
+
+.hero-glow {
+  background: radial-gradient(circle 600px at 50% 30%, rgba(139, 92, 246, 0.12), rgba(20, 184, 166, 0.01) 60%, transparent 80%);
+}
+
+.shadow-premium {
+  box-shadow: 0 10px 45px -10px rgba(0, 0, 0, 0.8), 0 0 1px 1.5px rgba(255, 255, 255, 0.04);
+}
+
+.shadow-premium-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shadow-premium-hover:hover {
+  box-shadow: 0 20px 50px -10px rgba(56, 189, 248, 0.15), 0 0 1px 1.5px rgba(56, 189, 248, 0.15);
+  transform: translateY(-3.5px);
+}
+
+/* Scroll progress bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #38bdf8, #8b5cf6, #14b8a6);
+  width: 0%;
+  z-index: 100;
+  transition: width 0.1s ease-out;
+}
+
+/* Floating custom notifications style */
+.toast-notification {
+  transform: translateY(100px);
+  opacity: 0;
+  animation: slide-up 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  15% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  85% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+}
+
+/* Terminal styled check block tab selector styles */
+.terminal-tab-active {
+  background-color: rgba(56, 189, 248, 0.1) !important;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+  color: #38bdf8 !important;
+}
+
+/* Auto-highlight animation */
+@keyframes pulse-highlight {
+  0%, 100% {
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.8), 0 0 20px 2px rgba(56, 189, 248, 0.2);
+  }
+}
+
+.recommended-active {
+  animation: pulse-highlight 2s infinite ease-in-out;
+  border-color: #38bdf8 !important;
+}

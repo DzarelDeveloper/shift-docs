@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developer Guide | Shift Docs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              background: '#0c0f16',
+              surface: '#111622',
+              card: '#161d2d',
+              border: '#212c3f',
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="../assets/css/docs.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" />
+  </head>
+  <body class="bg-background text-slate-100 font-sans selection:bg-sky-500/30 selection:text-sky-300">
+
+    <!-- Floating Sticky Global Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 md:top-4 md:left-1/2 md:-translate-x-1/2 w-full md:w-[calc(100%-2rem)] md:max-w-5xl z-50 transition-all duration-300">
+      <div id="navbar-inner" class="mx-auto px-6 py-3 flex items-center justify-between transition-all duration-300 md:rounded-2xl border border-transparent bg-transparent w-full">
+        
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <img src="https://raw.githubusercontent.com/DzarelDeveloper/BloggerImg/refs/heads/main/logo-s.png" alt="Shift Logo" class="w-9 h-9 rounded-xl shadow-lg group-hover:scale-105 transition-transform duration-300">
+          <span class="text-xl font-bold tracking-tight text-white group-hover:text-sky-400 transition-colors">Shift</span>
+        </a>
+
+        <!-- Desktop Menu Links -->
+        <nav class="hidden md:flex items-center gap-5">
+          <a href="index.html" class="relative group py-1.5 text-sm font-semibold text-sky-400 transition-colors duration-300">
+            Docs
+            <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-sky-400 origin-left scale-x-100 transition-transform duration-300 ease-out"></span>
+          </a>
+          <a href="../download.html" class="relative group py-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors duration-300">
+            Download
+            <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-sky-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </a>
+
+          <a href="https://github.com" target="_blank" rel="noreferrer" class="relative group py-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors duration-300 flex items-center gap-1.5">
+            
+            GitHub
+            <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-sky-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </a>
+        </nav>
+
+        <!-- Right Side Brand CTA Actions & Search -->
+        <div class="hidden md:flex items-center gap-4">
+          <!-- Search trigger -->
+          <button class="docs-search-trigger flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 text-xs text-slate-400 hover:text-white transition duration-200 cursor-pointer">
+            <i data-lucide="search" class="w-3.5 h-3.5"></i>
+            <span>Search...</span>
+            <span class="font-sans text-[10px] opacity-60 px-1.5 py-0.5 rounded bg-slate-950">⌘K</span>
+          </button>
+          
+          <a href="../download.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-950 hover:bg-sky-400 hover:text-slate-950 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-lg shadow-sky-500/5">
+            Get Started
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Hamburger Icon button for responsiveness -->
+        <div class="flex items-center gap-2.5 md:hidden">
+          <button id="docs-menu-toggle" class="p-2 rounded-xl border border-white/5 bg-white/5 text-slate-400 hover:text-white" aria-label="Toggle Docs Sidebar">
+            <i data-lucide="book-open" class="w-4.5 h-4.5"></i>
+          </button>
+          
+          <button class="docs-search-trigger p-2 rounded-xl border border-white/5 bg-white/5 text-slate-400 hover:text-white cursor-pointer" aria-label="Search Docs">
+            <i data-lucide="search" class="w-4.5 h-4.5"></i>
+          </button>
+
+          <button id="mobile-menu-btn" class="p-2 rounded-xl border border-white/5 bg-white/5 text-slate-300 hover:text-white transition-colors cursor-pointer" aria-label="Toggle Mobile Menu">
+            <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN TWO-COLUMN CONTAINER -->
+    <div class="max-w-[1440px] mx-auto flex min-h-[calc(100vh-64px)] relative pt-20 md:pt-24">
+      
+      <!-- LEFT SIDEBAR -->
+      <aside id="docs-sidebar-container" class="fixed inset-y-16 left-0 -translate-x-full md:translate-x-0 w-72 border-r border-border bg-background md:bg-transparent z-40 transition-transform duration-300 md:sticky md:block p-6">
+        <div class="md:hidden flex items-center justify-between mb-6 pb-4 border-b border-border">
+          <span class="text-xs font-bold text-white uppercase tracking-wider">Navigations</span>
+          <button id="docs-sidebar-close" class="p-1 px-1.5 rounded-md border border-border text-slate-400 hover:text-white">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <button class="docs-search-trigger md:hidden w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-border bg-[#1a2033] mb-6 text-xs text-slate-400 cursor-pointer">
+          <i data-lucide="search" class="w-4 h-4"></i>
+          <span>Search documentation...</span>
+        </button>
+        <nav class="space-y-6 docs-sidebar">
+          <div>
+            <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-3">Getting Started</h3>
+            <ul class="space-y-1">
+              <li><a href="introduction.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Introduction</a></li>
+              <li><a href="installation.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Installation</a></li>
+              <li><a href="quick-start.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Quick Start</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-3">Core Concepts</h3>
+            <ul class="space-y-1">
+              <li><a href="workspace.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Workspace</a></li>
+
+              <li><a href="templates.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Templates</a></li>
+              <li><a href="settings.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Settings</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-3">Help</h3>
+            <ul class="space-y-1">
+              <li><a href="developer-guide.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-white bg-slate-800/60 border border-border shadow-sm transition">Developer Guide</a></li>
+              <li><a href="faq.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">FAQ</a></li>
+              <li><a href="troubleshooting.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Troubleshooting</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="flex-1 min-w-0 max-w-[850px] px-6 lg:px-12 py-10">
+        <article class="prose">
+          <div class="text-[11px] font-mono font-bold text-violet-400 uppercase tracking-wider mb-2">Development</div>
+          <h1 id="developer-guide">Shift Development Guide</h1>
+          <p>
+            Want to contribute or build Shift locally? Follow these steps!
+            <br/><span class="text-xs text-slate-400"><strong>Author/Creator</strong>: <a href="https://github.com/DzarelDeveloper" target="_blank" class="text-sky-400 hover:underline">Muhamad Dzarel Alghifari (DzarelDeveloper)</a></span>
+          </p>
+
+          <h2 id="prerequisites">Prerequisites</h2>
+          <p>To develop Shift, you'll need these tools installed:</p>
+          
+          <h3 id="installing-nodejs">Installing Node.js</h3>
+          <p>Required (v18 or later):</p>
+          <ul>
+            <li>Download from <a href="https://nodejs.org/" target="_blank" class="text-sky-400 hover:underline">nodejs.org</a></li>
+            <li>Or use a version manager like <code>nvm</code> (recommended)</li>
+          </ul>
+          <pre><code class="language-bash"># For nvm (Linux/macOS)
+nvm install 20
+nvm use 20</code></pre>
+
+          <h3 id="installing-rust">Installing Rust</h3>
+          <p>Required for building Tauri backend:</p>
+          <ul>
+            <li>Follow official guide at <a href="https://www.rust-lang.org/tools/install" target="_blank" class="text-sky-400 hover:underline">rust-lang.org/tools/install</a></li>
+            <li>Check installation:</li>
+          </ul>
+          <pre><code class="language-bash">rustc --version
+cargo --version</code></pre>
+
+          <h3 id="installing-tauri-cli">Installing Tauri CLI</h3>
+          <p>Optional but recommended:</p>
+          <pre><code class="language-bash">npm install -g @tauri-apps/cli
+# Or with yarn/pnpm
+# yarn global add @tauri-apps/cli
+# pnpm add -g @tauri-apps/cli</code></pre>
+
+          <h2 id="installation">Installation</h2>
+          <ol>
+            <li>
+              <strong>Clone the repository</strong>:
+              <pre><code class="language-bash">git clone https://github.com/DzarelDeveloper/Shift.git
+cd Shift</code></pre>
+            </li>
+            <li>
+              <strong>Install dependencies</strong>:
+              <pre><code class="language-bash">npm ci
+# Or npm install if you want the latest compatible versions</code></pre>
+            </li>
+          </ol>
+
+          <h2 id="run-in-development">Run in Development</h2>
+          <h3 id="web-only">Web Only (Without Tauri)</h3>
+          <p>Good for rapid UI development without needing to build the Rust backend:</p>
+          <pre><code class="language-bash">npm run dev</code></pre>
+          <p>Open <a href="http://localhost:3000" target="_blank" class="text-sky-400 hover:underline">http://localhost:3000</a> in your browser.</p>
+
+          <h3 id="full-tauri">Full Tauri Desktop App</h3>
+          <p>Runs the full native desktop application:</p>
+          <pre><code class="language-bash">npm run tauri:dev</code></pre>
+          <p>This command will:</p>
+          <ul>
+            <li>Start the Vite dev server for frontend</li>
+            <li>Build and run the Rust backend</li>
+            <li>Open the native window</li>
+          </ul>
+
+          <h2 id="code-quality">Code Quality</h2>
+          
+          <h3 id="type-checking">Type Checking</h3>
+          <p>Check for TypeScript errors:</p>
+          <pre><code class="language-bash">npm run typecheck</code></pre>
+          
+          <h3 id="linting">Linting</h3>
+          <p>Check code for linting issues with ESLint:</p>
+          <pre><code class="language-bash">npm run lint</code></pre>
+          <p>Auto-fix fixable issues:</p>
+          <pre><code class="language-bash">npm run lint:fix</code></pre>
+
+          <h3 id="formatting">Formatting</h3>
+          <p>Format code with Prettier to ensure consistent style:</p>
+          <pre><code class="language-bash">npm run format</code></pre>
+          <p>Check if code is formatted correctly (without modifying files):</p>
+          <pre><code class="language-bash">npm run format -- --check</code></pre>
+
+          <h3 id="testing">Testing</h3>
+          <p>Run tests in watch mode for development:</p>
+          <pre><code class="language-bash">npm run test</code></pre>
+          <p>Run tests once (ideal for CI):</p>
+          <pre><code class="language-bash">npm run test:run</code></pre>
+
+          <h2 id="build-for-production">Build for Production</h2>
+          
+          <h3 id="web-build">Web Build</h3>
+          <p>Build just the frontend web app:</p>
+          <pre><code class="language-bash">npm run build</code></pre>
+          <p>Output will be in the <code>dist/</code> directory.</p>
+
+          <h3 id="tauri-app-build">Tauri App Build</h3>
+          <p>Build the full native desktop application for your platform:</p>
+          <pre><code class="language-bash">npm run tauri:build</code></pre>
+          <p>Output will be in <code>src-tauri/target/release/bundle/</code>.</p>
+
+          <h2 id="project-structure">Project Structure</h2>
+          <pre><code class="language-text">Shift-main/
+├── .github/workflows/    # GitHub Actions CI/CD configs
+├── src/
+│   ├── components/       # React UI Components
+│   ├── hooks/            # Custom React Hooks
+│   ├── utils/            # Utility Functions & Helpers
+│   ├── data/             # Static Data & Default Configs
+│   ├── test/             # Test Setup Files
+│   ├── types.ts          # TypeScript Type Definitions
+│   ├── App.tsx           # Main App Component
+│   ├── main.tsx          # Frontend Entry Point
+│   └── index.css         # Global Styles
+├── src-tauri/            # Tauri Rust Backend
+│   ├── src/main.rs       # Rust Main Entry Point
+│   ├── Cargo.toml        # Rust Dependencies
+│   ├── tauri.conf.json   # Tauri Configuration
+│   └── ...
+├── .gitignore            # Git ignore rules
+├── .prettierrc           # Prettier config
+├── eslint.config.js      # ESLint config
+├── tsconfig.json         # TypeScript config
+├── vite.config.ts        # Vite config
+├── vitest.config.ts      # Vitest config
+├── package.json          # NPM scripts & dependencies
+├── README.md             # Main project README
+├── CONTRIBUTING.md       # Contributing guide
+├── DEVELOPMENT.md        # Short development guide
+└── ...</code></pre>
+
+          <h2 id="debugging-tips">Debugging Tips</h2>
+          
+          <h3 id="frontend-debugging">Frontend Debugging (Web/Tauri)</h3>
+          <ul>
+            <li>Use browser DevTools (F12) for React component inspection</li>
+            <li>For Tauri, right-click and select "Inspect Element"</li>
+          </ul>
+
+          <h3 id="backend-debugging">Backend Debugging (Rust)</h3>
+          <ul>
+            <li>Use <code>println!</code> or <code>eprintln!</code> in Rust code (visible in terminal when running <code>tauri:dev</code>)</li>
+            <li>Check Tauri logs in the terminal</li>
+          </ul>
+          
+          <h3 id="tauri-plugin-log">Tauri Plugin-Log</h3>
+          <p>Logs sent via the Tauri plugin-log will appear both in the terminal and in browser DevTools Console.</p>
+
+          <h2 id="troubleshooting">Troubleshooting</h2>
+          
+          <h3 id="npm-install-fails">npm install fails</h3>
+          <ul>
+            <li>
+              Try deleting <code>node_modules</code> and <code>package-lock.json</code>, then run <code>npm install</code> again:
+              <pre><code class="language-bash">rm -rf node_modules package-lock.json
+npm install</code></pre>
+            </li>
+            <li>Or use <code>npm install --legacy-peer-deps</code> if there are peer dependency conflicts</li>
+          </ul>
+
+          <h3 id="tauri-build-fails">Tauri build fails</h3>
+          <ul>
+            <li>
+              Make sure all Rust dependencies are installed:
+              <pre><code class="language-bash">cd src-tauri
+cargo check</code></pre>
+            </li>
+            <li>Check that system libraries for Tauri are installed (follow <a href="https://tauri.app/v1/guides/getting-started/prerequisites" target="_blank" class="text-sky-400 hover:underline">Tauri Prerequisites</a>)</li>
+          </ul>
+        </article>
+      </main>
+
+      <!-- TABLE OF CONTENTS -->
+      <aside id="docs-toc-widget" class="hidden xl:block w-64 shrink-0 py-10 pr-6 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto">
+        <h4 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4 px-1">On This Page</h4>
+        <div id="docs-toc-items" class="space-y-2"></div>
+      </aside>
+
+    </div>
+
+    <!-- GLOBAL SEARCH MODAL -->
+    <div id="search-modal" class="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 items-center justify-center p-4 hidden animate-fade-in">
+      <div class="bg-[#111622] border border-border w-full max-w-[600px] rounded-2xl shadow-premium overflow-hidden transform scale-100 transition duration-300 flex flex-col max-h-[500px]">
+        <div class="px-5 py-4 border-b border-border bg-[#161d2d]/80 flex items-center gap-3">
+          <i data-lucide="search" class="w-4 h-4 text-sky-400 shrink-0"></i>
+          <input id="search-modal-input" type="text" placeholder="Search markdown, topics, concepts..." class="w-full bg-transparent text-white border-none outline-none text-sm placeholder-slate-500 font-sans" />
+          <button id="search-close" class="p-1.5 rounded-lg border border-border bg-[#0c0f16] text-slate-400 hover:text-white transition cursor-pointer text-xs font-mono font-bold">ESC</button>
+        </div>
+        <div id="search-results" class="p-5 overflow-y-auto flex-1 space-y-3"></div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof hljs !== 'undefined') {
+          hljs.highlightAll();
+        }
+      });
+    </script>
+  </body>
+</html>

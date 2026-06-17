@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Troubleshooting | Shift Docs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              background: '#0c0f16',
+              surface: '#111622',
+              card: '#161d2d',
+              border: '#212c3f',
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="../assets/css/docs.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" />
+  </head>
+  <body class="bg-background text-slate-100 font-sans selection:bg-sky-500/30 selection:text-sky-300">
+
+    <!-- Floating Sticky Global Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 md:top-4 md:left-1/2 md:-translate-x-1/2 w-full md:w-[calc(100%-2rem)] md:max-w-5xl z-50 transition-all duration-300">
+      <div id="navbar-inner" class="mx-auto px-6 py-3 flex items-center justify-between transition-all duration-300 md:rounded-2xl border border-transparent bg-transparent w-full">
+        
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <img src="https://raw.githubusercontent.com/DzarelDeveloper/BloggerImg/refs/heads/main/logo-s.png" alt="Shift Logo" class="w-9 h-9 rounded-xl shadow-lg group-hover:scale-105 transition-transform duration-300">
+          <span class="text-xl font-bold tracking-tight text-white group-hover:text-sky-400 transition-colors">Shift</span>
+        </a>
+
+        <!-- Desktop Menu Links -->
+        <nav class="hidden md:flex items-center gap-5">
+          <a href="index.html" class="relative group py-1.5 text-sm font-semibold text-sky-400 transition-colors duration-300">
+            Docs
+            <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-sky-400 origin-left scale-x-100 transition-transform duration-300 ease-out"></span>
+          </a>
+          <a href="../download.html" class="relative group py-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors duration-300">
+            Download
+            <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-sky-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </a>
+
+          <a href="https://github.com" target="_blank" rel="noreferrer" class="relative group py-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors duration-300 flex items-center gap-1.5">
+            
+            GitHub
+            <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-sky-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </a>
+        </nav>
+
+        <!-- Right Side Brand CTA Actions & Search -->
+        <div class="hidden md:flex items-center gap-4">
+          <!-- Search trigger -->
+          <button class="docs-search-trigger flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 text-xs text-slate-400 hover:text-white transition duration-200 cursor-pointer">
+            <i data-lucide="search" class="w-3.5 h-3.5"></i>
+            <span>Search...</span>
+            <span class="font-sans text-[10px] opacity-60 px-1.5 py-0.5 rounded bg-slate-950">⌘K</span>
+          </button>
+          
+          <a href="../download.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold bg-white text-slate-950 hover:bg-sky-400 hover:text-slate-950 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-lg shadow-sky-500/5">
+            Get Started
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Hamburger Icon button for responsiveness -->
+        <div class="flex items-center gap-2.5 md:hidden">
+          <!-- Sidebar documentation map trigger -->
+          <button id="docs-menu-toggle" class="p-2 rounded-xl border border-white/5 bg-white/5 text-slate-400 hover:text-white" aria-label="Toggle Docs Sidebar">
+            <i data-lucide="book-open" class="w-4.5 h-4.5"></i>
+          </button>
+          
+          <!-- Search trigger on mobile -->
+          <button class="docs-search-trigger p-2 rounded-xl border border-white/5 bg-white/5 text-slate-400 hover:text-white cursor-pointer" aria-label="Search Docs">
+            <i data-lucide="search" class="w-4.5 h-4.5"></i>
+          </button>
+
+          <!-- Main Menu toggle -->
+          <button id="mobile-menu-btn" class="p-2 rounded-xl border border-white/5 bg-white/5 text-slate-300 hover:text-white transition-colors cursor-pointer" aria-label="Toggle Mobile Menu">
+            <i data-lucide="menu" class="w-4.5 h-4.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Responsive Mobile Dropdown Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden absolute top-[calc(100%+0.5rem)] left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-[16px] border border-white/8 p-5 flex flex-col gap-4 rounded-2xl shadow-2xl z-50">
+        <a href="index.html" class="flex items-center justify-between text-sm font-semibold text-sky-400 py-1.5 border-b border-white/5">
+          Docs
+          <i data-lucide="chevron-right" class="w-4 h-4 opacity-50"></i>
+        </a>
+        <a href="../download.html" class="flex items-center justify-between text-sm font-medium py-1.5 border-b border-white/5 text-slate-400 hover:text-white">
+          Download
+          <i data-lucide="chevron-right" class="w-4 h-4 opacity-50"></i>
+        </a>
+
+        <div class="flex items-center gap-3 mt-2">
+          <a href="https://github.com" target="_blank" rel="noreferrer" class="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-slate-300 hover:text-white">
+            
+            GitHub
+          </a>
+          <a href="../download.html" class="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold bg-sky-500 text-teal-950 hover:bg-sky-400">
+            Get Started
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN TWO-COLUMN CONTAINER -->
+    <div class="max-w-[1440px] mx-auto flex min-h-[calc(100vh-64px)] relative pt-20 md:pt-24">
+      
+      <!-- LEFT SIDEBAR -->
+      <aside id="docs-sidebar-container" class="fixed inset-y-16 left-0 -translate-x-full md:translate-x-0 w-72 border-r border-border bg-background md:bg-transparent z-40 transition-transform duration-300 md:sticky md:block p-6">
+        <div class="md:hidden flex items-center justify-between mb-6 pb-4 border-b border-border">
+          <span class="text-xs font-bold text-white uppercase tracking-wider">Navigations</span>
+          <button id="docs-sidebar-close" class="p-1 px-1.5 rounded-md border border-border text-slate-400 hover:text-white">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <button class="docs-search-trigger md:hidden w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-border bg-[#1a2033] mb-6 text-xs text-slate-400 cursor-pointer">
+          <i data-lucide="search" class="w-4 h-4"></i>
+          <span>Search documentation...</span>
+        </button>
+        <nav class="space-y-6 docs-sidebar">
+          <div>
+            <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-3">Getting Started</h3>
+            <ul class="space-y-1">
+              <li><a href="introduction.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Introduction</a></li>
+              <li><a href="installation.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Installation</a></li>
+              <li><a href="quick-start.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Quick Start</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-3">Core Concepts</h3>
+            <ul class="space-y-1">
+              <li><a href="workspace.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Workspace</a></li>
+
+              <li><a href="templates.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Templates</a></li>
+              <li><a href="settings.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Settings</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-3">Help</h3>
+            <ul class="space-y-1">
+              <li><a href="developer-guide.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Developer Guide</a></li>
+              <li><a href="faq.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">FAQ</a></li>
+              <li><a href="troubleshooting.html" class="docs-sidebar-link block px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900/40 transition">Troubleshooting</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="flex-1 min-w-0 max-w-[850px] px-6 lg:px-12 py-10">
+        <article class="prose">
+          <div class="text-[11px] font-mono font-bold text-sky-400 uppercase tracking-wider mb-2">Help Desk</div>
+          <h1 id="troubleshooting-guide">Troubleshooting</h1>
+          <p>
+            Encounter an unexpected issue? Follow our structured diagnostics checklist to quickly restore local operations on your system.
+          </p>
+
+          <h2 id="shortcut-issues">Global Shortcut Not Responding</h2>
+          <p>
+            If pressing <kbd class="px-1.5 py-0.5 rounded-md bg-slate-800 border border-slate-700 text-xs text-slate-300">Ctrl + Alt + Space</kbd> (or your custom shortcut) does not open the Launcher:
+          </p>
+          <ol class="space-y-2 mt-4 text-slate-300">
+            <li>Check the System Tray (Windows) or Menu Bar (macOS) to ensure Shift is currently running in the background.</li>
+            <li>If another application uses the same global shortcut, there may be a conflict. Try changing the shortcut in Shift's Settings.</li>
+            <li>On macOS/Linux, ensure you have set up the shortcut manually via the OS settings, pointing to the Shift executable.</li>
+          </ol>
+
+          <h2 id="workspace-launch-issues">Workspace Launch Failures</h2>
+          <p>
+            If a specific App, Link, or Folder fails to open when running a Workspace:
+          </p>
+          <ul class="space-y-2 mt-4 text-slate-300">
+            <li>Ensure that the application path or executable name is correct and accessible on your system.</li>
+            <li>For folders, verify that the path actually exists on your local drive.</li>
+            <li>Check if your Antivirus or OS security settings are blocking Shift from launching other applications.</li>
+          </ul>
+
+          <h2 id="clearing-data">Resetting Application State</h2>
+          <p>
+            If the application behaves unexpectedly and you wish to start fresh, you can manually delete the SQLite database file from Shift's data location. You can find the data location path in the <strong>Settings</strong> menu.
+          </p>
+
+          <div class="docs-callout docs-callout-warning mt-6">
+            <h4 class="font-bold text-white text-xs mb-1 flex items-center gap-1.5">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-amber-500"></i> Warning: Data Loss
+            </h4>
+            <p class="text-xs text-slate-400 m-0 leading-relaxed">
+              Deleting the SQLite database will permanently remove all your custom Workspaces and configurations. Only do this if you intend to perform a clean factory reset.
+            </p>
+          </div>
+
+          <!-- Navigation buttons footer block -->
+          <div class="mt-12 pt-8 border-t border-border flex items-center justify-between">
+            <a href="faq.html" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-border text-slate-400 hover:text-white hover:bg-slate-900/60 font-semibold text-xs transition">
+              <i data-lucide="arrow-left" class="w-4 h-4"></i> FAQ
+            </a>
+            <span class="text-xs text-slate-500">End of manual directories</span>
+          </div>
+        </article>
+      </main>
+
+      <!-- TABLE OF CONTENTS -->
+      <aside id="docs-toc-widget" class="hidden xl:block w-64 shrink-0 py-10 pr-6 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto">
+        <h4 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4 px-1">On This Page</h4>
+        <div id="docs-toc-items" class="space-y-2"></div>
+      </aside>
+
+    </div>
+
+    <!-- GLOBAL SEARCH MODAL -->
+    <div id="search-modal" class="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 items-center justify-center p-4 hidden animate-fade-in">
+      <div class="bg-[#111622] border border-border w-full max-w-[600px] rounded-2xl shadow-premium overflow-hidden transform scale-100 transition duration-300 flex flex-col max-h-[500px]">
+        <div class="px-5 py-4 border-b border-border bg-[#161d2d]/80 flex items-center gap-3">
+          <i data-lucide="search" class="w-4 h-4 text-sky-400 shrink-0"></i>
+          <input id="search-modal-input" type="text" placeholder="Search markdown, topics, concepts..." class="w-full bg-transparent text-white border-none outline-none text-sm placeholder-slate-500 font-sans" />
+          <button id="search-close" class="p-1.5 rounded-lg border border-border bg-[#0c0f16] text-slate-400 hover:text-white transition cursor-pointer text-xs font-mono font-bold">ESC</button>
+        </div>
+        <div id="search-results" class="p-5 overflow-y-auto flex-1 space-y-3"></div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof hljs !== 'undefined') {
+          hljs.highlightAll();
+        }
+      });
+    </script>
+  </body>
+</html>
