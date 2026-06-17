@@ -1,0 +1,104 @@
+/* Shift Main CSS - Landing, Roadmap, Changelog */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: #0c0f16;
+  color: #f1f5f9;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0c0f16;
+}
+::-webkit-scrollbar-thumb {
+  background: #212c3f;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+/* Base grid layout overlay */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glow effects */
+.radial-glow {
+  background: radial-gradient(circle 500px at var(--x, 50%) var(--y, 50%), rgba(99, 102, 241, 0.12), transparent 80%);
+}
+
+.hero-glow {
+  background: radial-gradient(circle 600px at 50% 30%, rgba(139, 92, 246, 0.15), rgba(20, 184, 166, 0.02), transparent 70%);
+}
+
+.secondary-glow {
+  background: radial-gradient(circle 500px at 80% 60%, rgba(20, 184, 166, 0.1), rgba(99, 102, 241, 0.02), transparent 70%);
+}
+
+/* Premium Developer Card styling */
+.shadow-premium {
+  box-shadow: 0 10px 45px -10px rgba(0, 0, 0, 0.8), 0 0 1px 1.5px rgba(255, 255, 255, 0.04);
+}
+
+.shadow-premium-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shadow-premium-hover:hover {
+  box-shadow: 0 20px 50px -10px rgba(139, 92, 246, 0.2), 0 0 1px 1.5px rgba(139, 92, 246, 0.15);
+  transform: translateY(-3px);
+}
+
+/* Scroll progress bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #8b5cf6, #14b8a6, #38bdf8);
+  width: 0%;
+  z-index: 100;
+  transition: width 0.1s ease-out;
+}
+
+/* Active links */
+.nav-link-active {
+  color: #38bdf8 !important;
+}
+
+/* Timeline specific line */
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 15px;
+  width: 2px;
+  background: linear-gradient(180deg, #8b5cf6 0%, #14b8a6 50%, #212c3f 100%);
+}
+
+@media (min-width: 768px) {
+  .timeline-line::before {
+    left: 128px;
+  }
+}
